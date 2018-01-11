@@ -1020,6 +1020,7 @@ public abstract class BaseHapiFhirResourceDao<T extends IBaseResource> extends B
 			} else {
 				IBaseMetaType meta = ((IAnyResource) theResource).getMeta();
 				meta.setLastUpdated(theEntity.getUpdatedDate());
+				meta.setVersionId(id.getVersionIdPart());
 			}
 		}
 		return outcome;
