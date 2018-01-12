@@ -60,7 +60,7 @@ public class Communication extends DomainResource {
         /**
          * The event was terminated prior to any impact on the subject (though preparatory actions may have been taken)
          */
-        NOTDONE, 
+        NOTDONE,
         /**
          * The event has been temporarily stopped but is expected to resume in the future
          */
@@ -844,7 +844,7 @@ public class Communication extends DomainResource {
     /**
      * @return {@link #instantiates} (A protocol, guideline, or other definition that was adhered to in whole or in part by this communication event.)
      */
-    public List<UriType> getInstantiates() { 
+    public List<UriType> getInstantiates() {
       if (this.instantiates == null)
         this.instantiates = new ArrayList<UriType>();
       return this.instantiates;
@@ -853,12 +853,12 @@ public class Communication extends DomainResource {
     /**
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
-    public Communication setInstantiates(List<UriType> theInstantiates) { 
+    public Communication setInstantiates(List<UriType> theInstantiates) {
       this.instantiates = theInstantiates;
       return this;
     }
 
-    public boolean hasInstantiates() { 
+    public boolean hasInstantiates() {
       if (this.instantiates == null)
         return false;
       for (UriType item : this.instantiates)
@@ -870,7 +870,7 @@ public class Communication extends DomainResource {
     /**
      * @return {@link #instantiates} (A protocol, guideline, or other definition that was adhered to in whole or in part by this communication event.)
      */
-    public UriType addInstantiatesElement() {//2 
+    public UriType addInstantiatesElement() {//2
       UriType t = new UriType();
       if (this.instantiates == null)
         this.instantiates = new ArrayList<UriType>();
@@ -893,7 +893,7 @@ public class Communication extends DomainResource {
     /**
      * @param value {@link #instantiates} (A protocol, guideline, or other definition that was adhered to in whole or in part by this communication event.)
      */
-    public boolean hasInstantiates(String value) { 
+    public boolean hasInstantiates(String value) {
       if (this.instantiates == null)
         return false;
       for (UriType v : this.instantiates)
@@ -1151,7 +1151,7 @@ public class Communication extends DomainResource {
     /**
      * @return {@link #statusReason} (Captures the reason for the current state of the Communication.)
      */
-    public CodeableConcept getStatusReason() { 
+    public CodeableConcept getStatusReason() {
       if (this.statusReason == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create Communication.statusReason");
@@ -1160,14 +1160,14 @@ public class Communication extends DomainResource {
       return this.statusReason;
     }
 
-    public boolean hasStatusReason() { 
+    public boolean hasStatusReason() {
       return this.statusReason != null && !this.statusReason.isEmpty();
     }
 
     /**
      * @param value {@link #statusReason} (Captures the reason for the current state of the Communication.)
      */
-    public Communication setStatusReason(CodeableConcept value) { 
+    public Communication setStatusReason(CodeableConcept value) {
       this.statusReason = value;
       return this;
     }
@@ -1432,7 +1432,7 @@ public class Communication extends DomainResource {
     /**
      * @return {@link #topic} (Description of the purpose/content, similar to a subject line in an email.)
      */
-    public CodeableConcept getTopic() { 
+    public CodeableConcept getTopic() {
       if (this.topic == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create Communication.topic");
@@ -1441,14 +1441,14 @@ public class Communication extends DomainResource {
       return this.topic;
     }
 
-    public boolean hasTopic() { 
+    public boolean hasTopic() {
       return this.topic != null && !this.topic.isEmpty();
     }
 
     /**
      * @param value {@link #topic} (Description of the purpose/content, similar to a subject line in an email.)
      */
-    public Communication setTopic(CodeableConcept value) { 
+    public Communication setTopic(CodeableConcept value) {
       this.topic = value;
       return this;
     }
@@ -1456,7 +1456,7 @@ public class Communication extends DomainResource {
     /**
      * @return {@link #about} (Other resources that pertain to this communication and to which this communication should be associated.)
      */
-    public List<Reference> getAbout() { 
+    public List<Reference> getAbout() {
       if (this.about == null)
         this.about = new ArrayList<Reference>();
       return this.about;
@@ -1465,12 +1465,12 @@ public class Communication extends DomainResource {
     /**
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
-    public Communication setAbout(List<Reference> theAbout) { 
+    public Communication setAbout(List<Reference> theAbout) {
       this.about = theAbout;
       return this;
     }
 
-    public boolean hasAbout() { 
+    public boolean hasAbout() {
       if (this.about == null)
         return false;
       for (Reference item : this.about)
@@ -1499,7 +1499,7 @@ public class Communication extends DomainResource {
     /**
      * @return The first repetition of repeating field {@link #about}, creating it if it does not already exist
      */
-    public Reference getAboutFirstRep() { 
+    public Reference getAboutFirstRep() {
       if (getAbout().isEmpty()) {
         addAbout();
       }
@@ -1510,7 +1510,7 @@ public class Communication extends DomainResource {
      * @deprecated Use Reference#setResource(IBaseResource) instead
      */
     @Deprecated
-    public List<Resource> getAboutTarget() { 
+    public List<Resource> getAboutTarget() {
       if (this.aboutTarget == null)
         this.aboutTarget = new ArrayList<Resource>();
       return this.aboutTarget;
@@ -2138,14 +2138,14 @@ public class Communication extends DomainResource {
         case -995410646:  return addPartOf(); 
         case 1932956065:  return addInResponseTo(); 
         case -892481550:  return getStatusElement();
-        case 2051346646:  return getStatusReason(); 
+        case 2051346646:  return getStatusReason();
         case 50511102:  return addCategory(); 
         case -1165461084:  return getPriorityElement();
         case -1078030475:  return addMedium(); 
         case -1867885268:  return getSubject(); 
         case 820081177:  return addRecipient(); 
-        case 110546223:  return getTopic(); 
-        case 92611469:  return addAbout(); 
+        case 110546223:  return getTopic();
+        case 92611469:  return addAbout();
         case 951530927:  return getContext(); 
         case 3526552:  return getSentElement();
         case -808719903:  return getReceivedElement();
@@ -2607,7 +2607,7 @@ public class Communication extends DomainResource {
    * Path: <b>Communication.sender</b><br>
    * </p>
    */
-  @SearchParamDefinition(name="sender", path="Communication.sender", description="Message sender", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={Device.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
+  @SearchParamDefinition(name="sender", path="Communication.sender", description="Message sender", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Organization"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={Device.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
   public static final String SP_SENDER = "sender";
  /**
    * <b>Fluent Client</b> search parameter constant for <b>sender</b>
@@ -2659,7 +2659,7 @@ public class Communication extends DomainResource {
    * Path: <b>Communication.recipient</b><br>
    * </p>
    */
-  @SearchParamDefinition(name="recipient", path="Communication.recipient", description="Message recipient", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={CareTeam.class, Device.class, Group.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
+  @SearchParamDefinition(name="recipient", path="Communication.recipient", description="Message recipient", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Organization"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={CareTeam.class, Device.class, Group.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
   public static final String SP_RECIPIENT = "recipient";
  /**
    * <b>Fluent Client</b> search parameter constant for <b>recipient</b>

@@ -1277,7 +1277,7 @@ public class CommunicationRequest extends DomainResource {
     /**
      * @return {@link #about} (Other resources that pertain to this communication request and to which this communication request should be associated.)
      */
-    public List<Reference> getAbout() { 
+    public List<Reference> getAbout() {
       if (this.about == null)
         this.about = new ArrayList<Reference>();
       return this.about;
@@ -1286,12 +1286,12 @@ public class CommunicationRequest extends DomainResource {
     /**
      * @return Returns a reference to <code>this</code> for easy method chaining
      */
-    public CommunicationRequest setAbout(List<Reference> theAbout) { 
+    public CommunicationRequest setAbout(List<Reference> theAbout) {
       this.about = theAbout;
       return this;
     }
 
-    public boolean hasAbout() { 
+    public boolean hasAbout() {
       if (this.about == null)
         return false;
       for (Reference item : this.about)
@@ -1320,7 +1320,7 @@ public class CommunicationRequest extends DomainResource {
     /**
      * @return The first repetition of repeating field {@link #about}, creating it if it does not already exist
      */
-    public Reference getAboutFirstRep() { 
+    public Reference getAboutFirstRep() {
       if (getAbout().isEmpty()) {
         addAbout();
       }
@@ -1331,7 +1331,7 @@ public class CommunicationRequest extends DomainResource {
      * @deprecated Use Reference#setResource(IBaseResource) instead
      */
     @Deprecated
-    public List<Resource> getAboutTarget() { 
+    public List<Resource> getAboutTarget() {
       if (this.aboutTarget == null)
         this.aboutTarget = new ArrayList<Resource>();
       return this.aboutTarget;
@@ -1526,7 +1526,7 @@ public class CommunicationRequest extends DomainResource {
     /**
      * @return {@link #requester} (The device, individual, or organization who initiated the request and has responsibility for its activation.)
      */
-    public Reference getRequester() { 
+    public Reference getRequester() {
       if (this.requester == null)
         if (Configuration.errorOnAutoCreate())
           throw new Error("Attempt to auto-create CommunicationRequest.requester");
@@ -1535,14 +1535,14 @@ public class CommunicationRequest extends DomainResource {
       return this.requester;
     }
 
-    public boolean hasRequester() { 
+    public boolean hasRequester() {
       return this.requester != null && !this.requester.isEmpty();
     }
 
     /**
      * @param value {@link #requester} (The device, individual, or organization who initiated the request and has responsibility for its activation.)
      */
-    public CommunicationRequest setRequester(Reference value) { 
+    public CommunicationRequest setRequester(Reference value) {
       this.requester = value;
       return this;
     }
@@ -1550,14 +1550,14 @@ public class CommunicationRequest extends DomainResource {
     /**
      * @return {@link #requester} The actual object that is the target of the reference. The reference library doesn't populate this, but you can use it to hold the resource if you resolve it. (The device, individual, or organization who initiated the request and has responsibility for its activation.)
      */
-    public Resource getRequesterTarget() { 
+    public Resource getRequesterTarget() {
       return this.requesterTarget;
     }
 
     /**
      * @param value {@link #requester} The actual object that is the target of the reference. The reference library doesn't use these, but you can use it to hold the resource if you resolve it. (The device, individual, or organization who initiated the request and has responsibility for its activation.)
      */
-    public CommunicationRequest setRequesterTarget(Resource value) { 
+    public CommunicationRequest setRequesterTarget(Resource value) {
       this.requesterTarget = value;
       return this;
     }
@@ -1985,15 +1985,15 @@ public class CommunicationRequest extends DomainResource {
         case -1078030475:  return addMedium(); 
         case -1867885268:  return getSubject(); 
         case 820081177:  return addRecipient(); 
-        case 92611469:  return addAbout(); 
+        case 92611469:  return addAbout();
         case 951530927:  return getContext(); 
         case -786701938:  return addPayload(); 
         case -2022646513:  return getOccurrence(); 
         case 1687874001:  return getOccurrence(); 
         case -1500852503:  return getAuthoredOnElement();
         case 693933948:  return getRequester(); 
-        case -905962955:  return getSender(); 
-        case 722137681:  return addReasonCode(); 
+        case -905962955:  return getSender();
+        case 722137681:  return addReasonCode();
         case -1146218137:  return addReasonReference(); 
         case 3387378:  return addNote(); 
         default: return super.makeProperty(hash, name);
@@ -2232,7 +2232,7 @@ public class CommunicationRequest extends DomainResource {
    * Path: <b>CommunicationRequest.requester</b><br>
    * </p>
    */
-  @SearchParamDefinition(name="requester", path="CommunicationRequest.requester", description="Who/what is requesting service", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={Device.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
+  @SearchParamDefinition(name="requester", path="CommunicationRequest.requester", description="Who/what is requesting service", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Organization"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={Device.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
   public static final String SP_REQUESTER = "requester";
  /**
    * <b>Fluent Client</b> search parameter constant for <b>requester</b>
@@ -2482,7 +2482,7 @@ public class CommunicationRequest extends DomainResource {
    * Path: <b>CommunicationRequest.sender</b><br>
    * </p>
    */
-  @SearchParamDefinition(name="sender", path="CommunicationRequest.sender", description="Message sender", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={Device.class, HealthcareService.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
+  @SearchParamDefinition(name="sender", path="CommunicationRequest.sender", description="Message sender", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Organization"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={Device.class, HealthcareService.class, Organization.class, Patient.class, Practitioner.class, PractitionerRole.class, RelatedPerson.class } )
   public static final String SP_SENDER = "sender";
  /**
    * <b>Fluent Client</b> search parameter constant for <b>sender</b>
@@ -2534,7 +2534,7 @@ public class CommunicationRequest extends DomainResource {
    * Path: <b>CommunicationRequest.recipient</b><br>
    * </p>
    */
-  @SearchParamDefinition(name="recipient", path="CommunicationRequest.recipient", description="Message recipient", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={CareTeam.class, Device.class, Group.class, Organization.class, Patient.class, Practitioner.class, RelatedPerson.class } )
+  @SearchParamDefinition(name="recipient", path="CommunicationRequest.recipient", description="Message recipient", type="reference", providesMembershipIn={ @ca.uhn.fhir.model.api.annotation.Compartment(name="Device"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Organization"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Patient"), @ca.uhn.fhir.model.api.annotation.Compartment(name="Practitioner"), @ca.uhn.fhir.model.api.annotation.Compartment(name="RelatedPerson") }, target={CareTeam.class, Device.class, Group.class, Organization.class, Patient.class, Practitioner.class, RelatedPerson.class } )
   public static final String SP_RECIPIENT = "recipient";
  /**
    * <b>Fluent Client</b> search parameter constant for <b>recipient</b>
