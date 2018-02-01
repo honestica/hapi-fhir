@@ -230,7 +230,7 @@ public abstract class BaseResourceReturningMethodBinding extends BaseMethodBindi
 				Integer resultSize = result.size();
 				int start;
 				if (resultSize != null) {
-					start = Math.max(0, Math.min(offsetI, resultSize - 1));
+					start = Math.max(0, Math.min(offsetI, resultSize));
 				} else {
 					start = offsetI;
 				}
