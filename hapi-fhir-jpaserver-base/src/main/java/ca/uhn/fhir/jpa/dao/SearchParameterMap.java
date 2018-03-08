@@ -41,6 +41,7 @@ public class SearchParameterMap extends LinkedHashMap<String, List<List<? extend
 	private static final long serialVersionUID = 1L;
 
 	private Integer myCount;
+	private Integer myOffset;
 	private EverythingModeEnum myEverythingMode = null;
 	private Set<Include> myIncludes;
 	private DateRangeParam myLastUpdated;
@@ -152,6 +153,14 @@ public class SearchParameterMap extends LinkedHashMap<String, List<List<? extend
 		} else {
 			theB.append('&');
 		}
+	}
+
+	public Integer getOffset() {
+		return myOffset;
+	}
+
+	public void setOffset(Integer myOffset) {
+		this.myOffset = myOffset;
 	}
 
 	public Integer getCount() {
