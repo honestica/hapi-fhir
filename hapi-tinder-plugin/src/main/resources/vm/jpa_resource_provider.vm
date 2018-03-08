@@ -131,7 +131,10 @@ public class ${className}ResourceProvider extends
 			SortSpec theSort,
 			
 			@ca.uhn.fhir.rest.annotation.Count
-			Integer theCount
+			Integer theCount,
+
+			@ca.uhn.fhir.rest.annotation.PageOffet
+			Integer theOffset
 	) {
 		startRequest(theServletRequest);
 		try {
@@ -152,6 +155,7 @@ public class ${className}ResourceProvider extends
 			paramMap.setIncludes(theIncludes);
 			paramMap.setSort(theSort);
 			paramMap.setCount(theCount);
+			paramMap.setOffset(theOffset);
 
 			getDao().translateRawParameters(theAdditionalRawParams, paramMap);
 
