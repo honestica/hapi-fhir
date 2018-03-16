@@ -20,28 +20,31 @@ package ca.uhn.fhir.rest.server.interceptor;
  * #L%
  */
 
-import java.io.IOException;
-import java.util.*;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hl7.fhir.instance.model.api.IBaseResource;
-import org.hl7.fhir.instance.model.api.IIdType;
-
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.model.api.TagList;
 import ca.uhn.fhir.model.base.resource.BaseOperationOutcome;
-import ca.uhn.fhir.rest.annotation.*;
+import ca.uhn.fhir.rest.annotation.Read;
+import ca.uhn.fhir.rest.annotation.ResourceParam;
+import ca.uhn.fhir.rest.annotation.Search;
+import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.api.RestOperationTypeEnum;
 import ca.uhn.fhir.rest.api.server.RequestDetails;
 import ca.uhn.fhir.rest.server.IRestfulServerDefaults;
 import ca.uhn.fhir.rest.server.exceptions.AuthenticationException;
 import ca.uhn.fhir.rest.server.exceptions.BaseServerResponseException;
 import ca.uhn.fhir.rest.server.servlet.ServletRequestDetails;
-
-import static org.apache.commons.lang3.StringUtils.isBlank;
+import org.hl7.fhir.instance.model.api.IBaseResource;
+import org.hl7.fhir.instance.model.api.IIdType;
 
 /**
  * Provides methods to intercept requests and responses. Note that implementations of this interface may wish to use
@@ -204,6 +207,37 @@ public interface IServerInterceptor {
 	 */
 	boolean outgoingResponse(RequestDetails theRequestDetails, IBaseResource theResponseObject, HttpServletRequest theServletRequest, HttpServletResponse theServletResponse)
 			throws AuthenticationException;
+
+	/**
+	 * This method is called after the server implementation method has been called, but before any attempt to stream the
+	 * response back to the client.
+	 *
+	 * @param theRequestDetails
+	 *           A bean containing details about the request that is about to be processed, including details such as the
+	 *           resource type and logical ID (if any) and other FHIR-specific aspects of the request which have been
+	 *           pulled out of the {@link HttpServletRequest servlet request}.
+	 * @param theResponseObject
+	 *           The actual object which is being streamed to the client as a response. This may be
+	 *           <code>null</code> if the response does not include a resource.
+	 * @param response
+	 *           The actual Method Outcome which contains updated / created / deleted object. This may be
+	 *           <code>null</code> ?.
+	 * @param theServletRequest
+	 *           The incoming request
+	 * @param theServletResponse
+	 *           The response. Note that interceptors may choose to provide a response (i.e. by calling
+	 *           {@link HttpServletResponse#getWriter()}) but in that case it is important to return <code>false</code>
+	 *           to indicate that the server itself should not also provide a response.
+	 * @return Return <code>true</code> if processing should continue normally. This is generally the right thing to do.
+	 *         If your interceptor is providing a response rather than letting HAPI handle the response normally, you
+	 *         must return <code>false</code>. In this case, no further processing will occur and no further interceptors
+	 *         will be called.
+	 * @throws AuthenticationException
+	 *            This exception may be thrown to indicate that the interceptor has detected an unauthorized access
+	 *            attempt. If thrown, processing will stop and an HTTP 401 will be returned to the client.
+	 */
+	boolean outgoingResponse(RequestDetails theRequestDetails, IBaseResource theResponseObject, MethodOutcome response, HttpServletRequest theServletRequest, HttpServletResponse theServletResponse)
+		throws AuthenticationException;
 
 	/**
 	 * Use {@link #outgoingResponse(RequestDetails, IBaseResource, HttpServletRequest, HttpServletResponse)} instead

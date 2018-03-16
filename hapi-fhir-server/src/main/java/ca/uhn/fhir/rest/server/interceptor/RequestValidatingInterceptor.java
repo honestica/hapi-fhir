@@ -2,33 +2,9 @@ package ca.uhn.fhir.rest.server.interceptor;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-/*
- * #%L
- * HAPI FHIR - Server Framework
- * %%
- * Copyright (C) 2014 - 2018 University Health Network
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
-
 import java.nio.charset.Charset;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.hl7.fhir.instance.model.api.IBaseOperationOutcome;
-import org.hl7.fhir.instance.model.api.IBaseResource;
 
 import ca.uhn.fhir.rest.api.EncodingEnum;
 import ca.uhn.fhir.rest.api.server.RequestDetails;
@@ -39,6 +15,28 @@ import ca.uhn.fhir.rest.server.method.ResourceParameter;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
 import ca.uhn.fhir.validation.ValidationResult;
+import org.hl7.fhir.instance.model.api.IBaseOperationOutcome;
+import org.hl7.fhir.instance.model.api.IBaseResource;
+
+/*
+ * #%L
+ * HAPI FHIR - Server Framework
+ * %%
+ * Copyright (C) 2014 - 2018 University Health Network
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
 /**
  * This interceptor intercepts each incoming request and if it contains a FHIR resource, validates that resource. The
@@ -103,7 +101,9 @@ public class RequestValidatingInterceptor extends BaseValidatingInterceptor<Stri
 	}
 
 	@Override
-	public boolean outgoingResponse(RequestDetails theRequestDetails, IBaseResource theResponseObject) {
+	public boolean outgoingResponse(RequestDetails theRequestDetails,
+		IBaseResource theResponseObject, HttpServletRequest theServletRequest,
+		HttpServletResponse theServletResponse) {
 		if (myAddValidationResultsToResponseOperationOutcome) {
 			if (theResponseObject instanceof IBaseOperationOutcome) {
 				IBaseOperationOutcome oo = (IBaseOperationOutcome) theResponseObject;

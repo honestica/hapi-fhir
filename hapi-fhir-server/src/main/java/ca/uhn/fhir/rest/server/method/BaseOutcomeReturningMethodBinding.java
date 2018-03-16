@@ -26,13 +26,7 @@ import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
-
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
-import org.hl7.fhir.instance.model.api.IBaseOperationOutcome;
-import org.hl7.fhir.instance.model.api.IBaseResource;
-import org.hl7.fhir.instance.model.api.IIdType;
 
 import ca.uhn.fhir.context.ConfigurationException;
 import ca.uhn.fhir.context.FhirContext;
@@ -52,6 +46,11 @@ import ca.uhn.fhir.rest.server.RestfulServerUtils;
 import ca.uhn.fhir.rest.server.exceptions.BaseServerResponseException;
 import ca.uhn.fhir.rest.server.exceptions.InternalErrorException;
 import ca.uhn.fhir.rest.server.interceptor.IServerInterceptor;
+import ca.uhn.fhir.rest.server.servlet.ServletRequestDetails;
+import org.apache.commons.lang3.StringUtils;
+import org.hl7.fhir.instance.model.api.IBaseOperationOutcome;
+import org.hl7.fhir.instance.model.api.IBaseResource;
+import org.hl7.fhir.instance.model.api.IIdType;
 
 abstract class BaseOutcomeReturningMethodBinding extends BaseMethodBinding<MethodOutcome> {
 	static final org.slf4j.Logger ourLog = org.slf4j.LoggerFactory.getLogger(BaseOutcomeReturningMethodBinding.class);
@@ -187,7 +186,9 @@ abstract class BaseOutcomeReturningMethodBinding extends BaseMethodBinding<Metho
 
 	protected abstract Set<RequestTypeEnum> provideAllowableRequestTypes();
 
-	private Object returnResponse(IRestfulServer<?> theServer, RequestDetails theRequest, MethodOutcome response, IBaseResource originalOutcome, IBaseResource resource) throws IOException {
+	private Object returnResponse(IRestfulServer<?> theServer, RequestDetails theRequest,
+		MethodOutcome response, IBaseOperationOutcome originalOutcome, IBaseResource resource)
+		throws IOException {
 		boolean allowPrefer = false;
 		int operationStatus = getOperationStatus(response);
 		IBaseResource outcome = originalOutcome;
@@ -208,7 +209,9 @@ abstract class BaseOutcomeReturningMethodBinding extends BaseMethodBinding<Metho
 
 		for (int i = theServer.getInterceptors().size() - 1; i >= 0; i--) {
 			IServerInterceptor next = theServer.getInterceptors().get(i);
-			boolean continueProcessing = next.outgoingResponse(theRequest, outcome);
+			ServletRequestDetails details = (ServletRequestDetails) theRequest;
+			boolean continueProcessing = next.outgoingResponse(theRequest, outcome, response,
+				details.getServletRequest(), details.getServletResponse());
 			if (!continueProcessing) {
 				return null;
 			}

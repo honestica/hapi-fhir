@@ -1,5 +1,21 @@
 package ca.uhn.fhir.rest.server;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.model.api.IResource;
 import ca.uhn.fhir.rest.annotation.Create;
@@ -32,18 +48,13 @@ import org.hamcrest.core.StringContains;
 import org.hl7.fhir.dstu3.model.OperationOutcome;
 import org.hl7.fhir.dstu3.model.Patient;
 import org.hl7.fhir.instance.model.api.IBaseResource;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
 
 public class InterceptorDstu3Test {
 
@@ -144,7 +155,7 @@ public class InterceptorDstu3Test {
 
 		when(myInterceptor1.incomingRequestPreProcessed(any(HttpServletRequest.class), any(HttpServletResponse.class))).thenReturn(true);
 		when(myInterceptor1.incomingRequestPostProcessed(any(RequestDetails.class), any(HttpServletRequest.class), any(HttpServletResponse.class))).thenReturn(true);
-		when(myInterceptor1.outgoingResponse(any(RequestDetails.class), any(IResource.class))).thenReturn(true);
+		when(myInterceptor1.outgoingResponse(any(RequestDetails.class), any(IResource.class), any(MethodOutcome.class), any(HttpServletRequest .class), any(HttpServletResponse .class))).thenReturn(true);
 
 		String input = createInput();
 
@@ -165,7 +176,7 @@ public class InterceptorDstu3Test {
 		ArgumentCaptor<RequestDetails> rdCapt = ArgumentCaptor.forClass(RequestDetails.class);
 		ArgumentCaptor<IBaseResource> resourceCapt = ArgumentCaptor.forClass(IBaseResource.class);
 		verify(myInterceptor1, times(1)).incomingRequestPreHandled(opTypeCapt.capture(), arTypeCapt.capture());
-		verify(myInterceptor1, times(1)).outgoingResponse(any(RequestDetails.class), resourceCapt.capture());
+		verify(myInterceptor1, times(1)).outgoingResponse(any(RequestDetails.class), resourceCapt.capture(), any(MethodOutcome.class), any(HttpServletRequest .class), any(HttpServletResponse .class));
 
 		assertEquals(1, resourceCapt.getAllValues().size());
 		assertEquals(null, resourceCapt.getAllValues().get(0));
